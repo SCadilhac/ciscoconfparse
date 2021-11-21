@@ -88,7 +88,7 @@ def read(fname):
 
 ## Conditionally require the correct ipaddr package in Python2 vs Python3
 # Ref Github issue #127 - sdist improvements
-REQUIRES = ["passlib", "dnspython", "loguru"]
+REQUIRES = ["passlib", "loguru"]
 EXTRAS = {
     ":python_version<'3'": ["ipaddr>=2.1.11"],
 }
@@ -130,7 +130,6 @@ def setup_packages():
         long_description=read("README.rst"),
         include_package_data=True,  # See MANIFEST.in for explicit rules
         packages=find_packages(),
-        use_2to3=True,  # Reqd for Windows + Py3 - ref Github issue #32
         zip_safe=False,
         python_requires='>=3.5',
         install_requires=REQUIRES,

@@ -65,7 +65,6 @@ devpkgs:
 	pip install --upgrade mccabe
 	pip install --upgrade flake8
 	pip install --upgrade yapf
-	pip install dnspython==1.14.0
 	pip install --upgrade fabric
 	pip install --upgrade ipaddr
 .PHONY: flake

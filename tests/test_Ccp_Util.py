@@ -10,7 +10,6 @@ from ciscoconfparse.ccp_util import _RGX_IPV4ADDR, _RGX_IPV6ADDR
 from ciscoconfparse.ccp_util import IPv4Obj, L4Object
 from ciscoconfparse.ccp_util import CiscoRange
 from ciscoconfparse.ccp_util import IPv6Obj
-from ciscoconfparse.ccp_util import dns_lookup, reverse_dns_lookup
 from ciscoconfparse.ccp_util import collapse_addresses
 import pytest
 
@@ -457,26 +456,6 @@ def test_collapse_addresses_02():
     collapsed_list = sorted(collapse_addresses(net_list))
     assert collapsed_list[0].network_address==IPv4Obj('192.0.0.0/26').ip
     assert collapsed_list[1].network_address==IPv4Obj('192.0.2.128/25').ip
-
-
-def test_dns_lookup():
-    # Use VMWare's opencloud A-record to test...
-    #   ref http://stackoverflow.com/a/7714208/667301
-    result_correct = {"addrs": ["127.0.0.1"], "name": "*.vcap.me", "error": ""}
-    test_result = dns_lookup("*.vcap.me")
-    if not test_result["error"]:
-        assert dns_lookup("*.vcap.me") == result_correct
-    else:
-        pytest.skip(test_result["error"])
-
-
-def test_reverse_dns_lookup():
-    result_correct = {"addr": "127.0.0.1", "name": "localhost.", "error": ""}
-    test_result = reverse_dns_lookup("127.0.0.1")
-    if not test_result["error"]:
-        assert "localhost" in test_result["name"].lower()
-    else:
-        pytest.skip(test_result["error"])
 
 
 def test_CiscoRange_01():
