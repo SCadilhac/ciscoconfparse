@@ -1,7 +1,7 @@
 
 Fork of ciscoconfparse without DNS resolver to work with GraalVM.
 
-To be used in Netshot 0.16.2+:
+To be used in Netshot 0.16.2+ and GraalVM 21.3.0.
 
 ```bash
 su - netshot -s /bin/bash
